@@ -1,12 +1,30 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+        <router-link to="/">Home</router-link> |
+      <router-link to="/movies">Movies</router-link> |
+      <router-link to="/saved">Saved</router-link>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+import Vue from "vue";
+import Table from "@/components/Table";
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vue-image-lightbox/dist/vue-image-lightbox.min.css'
+import VueLazyLoad from "vue-lazyload";
+Vue.use(VueLazyLoad);
+Vue.use(BootstrapVue)
+Vue.component('custom-table', Table)
+
+export default {
+    
+}
+</script>
 
 <style>
 #app {
