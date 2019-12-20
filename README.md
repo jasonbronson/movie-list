@@ -1,4 +1,4 @@
-# porn
+# Movie App
 
 ## Project setup
 ```

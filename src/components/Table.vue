@@ -109,8 +109,6 @@ export default {
             let a = {};
             a.src = img.uri;
             a.thumb = img.uri;
-            //a.caption ='';
-            //a.srcset='';
             return a;
         })
         return temp;
