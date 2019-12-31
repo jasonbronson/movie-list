@@ -20,7 +20,7 @@ module.exports = {
         console.log("Query:", temp);
       }
       if (rating) {
-        results = await db.asyncFind({ rating: { $gt: 0 } }, [
+        results = await db.asyncFind({ rating: { $gt: 1 } }, [
           ["limit", limit],
           ["skip", page]
         ]);

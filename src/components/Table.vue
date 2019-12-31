@@ -34,7 +34,7 @@
             <b-img
               v-bind:src="image.uri"
               fluid
-              @click="showImage(props.row.id)"
+              @click="showImage(props.row._id)"
               class="image"
             />
           </li>
@@ -42,7 +42,7 @@
             :images="imageList(props.formattedRow[props.column.field])"
             :showLightBox="false"
             :showThumbs="true"
-            :ref="'lightbox' + props.row.id"
+            :ref="'lightbox' + props.row._id"
           ></LightBox>
         </span>
         <span v-else-if="props.column.field == 'title'">
@@ -55,7 +55,7 @@
             @rating-selected="setRating"
             :rating="props.row.rating"
             :star-size="starsize"
-            :max-rating="3"
+            :max-rating="5"
           ></star-rating>
         </span>
         <span v-else>
@@ -129,6 +129,7 @@ export default {
       return temp;
     },
     showImage(index) {
+      console.log(index);
       let name = "lightbox" + index;
       this.$refs[name].showImage(0);
     },
