@@ -1,5 +1,5 @@
 {
-  "name": "porn",
+  "name": "Iptorrent-Collection-App",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,9 @@
     "bootstrap-vue": "^2.1.0",
     "lowdb": "^1.0.0",
     "nedb": "^1.8.0",
+    "nedb-async": "^0.1.3",
     "nodemon": "^2.0.2",
+    "puppeteer": "^2.0.0",
     "vue": "^2.6.10",
     "vue-easy-lightbox": "^0.8.1",
     "vue-good-table": "^2.18.1",

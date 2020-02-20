@@ -30,11 +30,11 @@
       <div slot="emptystate">No {{ props.norowsfound }} found</div>
       <template slot="table-row" slot-scope="props">
         <span v-if="props.column.field == 'images'">
-          <li v-for="image in props.formattedRow[props.column.field]">
+          <li v-for="(image, key) in props.formattedRow[props.column.field]">
             <b-img
               v-bind:src="image.uri"
               fluid
-              @click="showImage(props.row._id)"
+              @click="showImage(props.row._id, key)"
               class="image"
             />
           </li>
@@ -128,10 +128,10 @@ export default {
       });
       return temp;
     },
-    showImage(index) {
-      console.log(index);
-      let name = "lightbox" + index;
-      this.$refs[name].showImage(0);
+    showImage(lightboxName, key) {
+      console.log(key, lightboxName);
+      let name = "lightbox" + lightboxName;
+      this.$refs[name].showImage(key);
     },
     setRating(rating) {
       this.rating = rating;

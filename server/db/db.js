@@ -1,15 +1,15 @@
 "use strict";
 
-const { AsyncNedb } = require("nedb-async"),
-  db = new AsyncNedb({ filename: "../../database.json", autoload: true });
-
-// const Datastore = require("nedb"),
-//   db2 = new Datastore({ filename: "../../temp.json", autoload: true });
+const { AsyncNedb } = require("nedb-async");
+var database = new AsyncNedb({
+  filename: "/home/node/database/database.json",
+  autoload: true
+});
 
 module.exports = {
   get: async (id = "", limit = 10, page = 0, query = "", rating = 0) => {
     if (id) {
-      return await db.asyncFind({ _id: id });
+      return await database.asyncFind({ _id: id });
     } else {
       page = page * limit;
       let temp = {};
@@ -20,13 +20,13 @@ module.exports = {
         console.log("Query:", temp);
       }
       if (rating) {
-        results = await db.asyncFind({ rating: { $gt: 1 } }, [
+        results = await database.asyncFind({ rating: { $gt: 1 } }, [
           ["limit", limit],
           ["skip", page]
         ]);
         console.log("Rating:", rating);
       } else {
-        results = await db.asyncFind(temp, [
+        results = await database.asyncFind(temp, [
           ["limit", limit],
           ["skip", page]
         ]);
@@ -37,15 +37,25 @@ module.exports = {
     }
   },
   getTotal: async () => {
-    let count = await db.asyncCount({});
+    let count = await database.asyncCount({});
     return count;
   },
   updateRating: async (id, rating) => {
-    return await db.asyncUpdate({ _id: id }, { $set: { rating: rating } });
+    return await database.asyncUpdate(
+      { _id: id },
+      { $set: { rating: rating } }
+    );
+  },
+  findById: async id => {
+    return await database.asyncFind({ _id: id });
+  },
+  findByTitle: async title => {
+    return await database.asyncFind({ title: title });
+  },
+  insert: async doc => {
+    return await database.asyncInsert(doc);
+  },
+  updateByTitle: async (title, updatedDoc) => {
+    return await database.asyncUpdate({ title: title }, { $set: updatedDoc });
   }
 };
-
-// db.insert(movie, function (err, newDoc) {   // Callback is optional
-//     // newDoc is the newly inserted document, including its _id
-//     // newDoc has no key called notToBeSaved since its value was undefined
-//     });

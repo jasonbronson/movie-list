@@ -1,2 +1,4 @@
 .env
 package-lock.json
+cookies.json
+database.json

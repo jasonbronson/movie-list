@@ -12,7 +12,11 @@ export default {
       props: {
         norowsfound: "Saves",
         searchname: "Saves",
-        remoteURL: "http://192.168.1.69:3000/movies",
+        remoteURL:
+          window.location.protocol +
+          "//" +
+          window.location.hostname +
+          ":3001/movies",
         remoteParams: "&rating_gte=1",
         isLoading: false
       }

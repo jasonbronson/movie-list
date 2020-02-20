@@ -1,0 +1,2 @@
+#docker run -it --rm --name nodecron-puppeteer -v $(pwd)/puppeteer:/usr/src/app -w /usr/src/app node:12 node index.js
+* * * * * root /usr/local/bin/node /app/index.js > /var/log/cron.log 2>&1
