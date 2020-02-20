@@ -32,7 +32,7 @@
         <span v-if="props.column.field == 'images'">
           <li v-for="(image, key) in props.formattedRow[props.column.field]">
             <b-img
-              v-bind:src="image.uri"
+              v-bind:src="image"
               fluid
               @click="showImage(props.row._id, key)"
               class="image"
@@ -119,11 +119,15 @@ export default {
   },
   methods: {
     imageList(images) {
+      console.log(images);
+      if (images.length < 1) {
+        return null;
+      }
       let temp = images.map(img => {
-        console.log(img.uri);
+        console.log(img);
         let a = {};
-        a.src = img.uri;
-        a.thumb = img.uri;
+        a.src = img;
+        a.thumb = img;
         return a;
       });
       return temp;
